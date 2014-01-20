@@ -1,0 +1,69 @@
+doctype 5
+html(lang="en")
+  head
+    title="Study Hall"
+    meta(http-equiv="Content-Type", content="text/html; charset=iso-8859-1")
+
+    link(rel="stylesheet" href="/studyhall/resources/css/main.css")
+    link(rel="stylesheet" href="/studyhall/resources/vendor/leaflet/leaflet.css")
+    link(rel="stylesheet" href="/studyhall/resources/vendor/bootstrap/css/bootstrap.min.css")
+  body
+    div(ng-app="StudyHallApp")
+      div.container-fluid
+        div.row(style="background-color:#4C9AFF;")
+          div.col-md-3
+            h1(style="margin-left:20px") Study Hall
+          div.col-md-9
+            div#nav-profile-dropdown.btn-group.navbar-right(style="margin-top:20px;margin-bottom:10px;margin-right:20px;")
+              button(type="button").btn.navbar-btn
+                |Sign Up
+              button(data-toggle="dropdown" type="button").btn.navbar-btn.dropdown-toggle
+                |Login 
+                span.caret
+              ul.dropdown-menu
+                li(ng-controller="LoginController")
+                  form(ng-submit="" style="padding: 10px;")
+                    label Username
+                      input#user_login.input(type="text" tabindex="10" size="20" value="" name="log")
+                    label Password
+                      input#user_pass.input(type="password" tabindex="20" size="20" value="" name="pwd")
+                    label
+                      input#rememberme(type="checkbox" tabindex="90" value="forever" name="rememberme")
+                      |  Remember Me
+                    input.btn.btn-primary#wp-submit(type="submit" tabindex="100" value="Log In" name="wp-submit")
+        div.row-fluid
+          div.main.centered.col-md-3(ng-controller="FilterController" style="background-color:#ee9;")
+            form(ng-submit="")
+              div.row-fluid.btn-group-vertical(data-toggle="buttons-checkbox" ng-show="showToggles")
+                button.btn.btn-default(ng-repeat="offense in offenses | orderBy:'index'" ng-model="offense.selected" value="{{offense.name}}" type="checkbox" checkbox-toggle="") 
+                  div.keyCircle(style="background-color:{{offense.color}}")
+                  {{offense.name}} 
+              div.row-fluid
+                br
+              div.row-fluid.btn-group(data-toggle="buttons-checkbox")
+                button.btn.btn-default(ng-model="showPoints" type="checkbox" checkbox-toggle="") Points
+                button.btn.btn-default(ng-model="showHeat" type="checkbox" checkbox-toggle="") Heat
+              div.row-fluid
+                br
+                | Crimes Mapped: {{crimesCount}}
+          div.main.centered.col-md-9(ng-controller="MapController" style="background-color:#e9e;")
+            div#spinner(ng-show="showSpinner" style="display: none;")
+              img(src="/studyhall/resources/img/spinner-small.gif")
+            div#map
+            |Map
+        
+    script(type="text/javascript" src="/studyhall/resources/vendor/jquery/jquery-1.10.2.min.js")
+    script(type="text/javascript" src="/studyhall/resources/vendor/bootstrap/js/bootstrap.min.js")
+    script(type="text/javascript" src="/studyhall/resources/vendor/leaflet/leaflet.js")
+    script(type="text/javascript" src="/studyhall/resources/vendor/angular/angular-1.2.9.min.js")
+    script(type="text/javascript" src="/studyhall/resources/js/controllers.js")
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-45059432-1', 'ethanshepherd.com');
+      ga('send', 'pageview');
+
+

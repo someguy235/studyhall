@@ -1,0 +1,16 @@
+{
+  "name": "studyhall",
+  "description": "discover and keep track of places to read, study, or work",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.4.0",
+    "jade": "0.35.0",
+    "request": "2.27.0",
+    "underscore": "1.5.2",
+    "async": "0.2.9",
+    "mongojs": "0.9.6",
+    "passport": "~0.1.18",
+    "passport-local": "~0.1.6"
+  }
+}
