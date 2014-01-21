@@ -10,11 +10,11 @@ html(lang="en")
   body
     div(ng-app="StudyHallApp")
       div.container-fluid
-        div.row(style="background-color:#4C9AFF;")
-          div.col-md-3
-            h1(style="margin-left:20px") Study Hall
-          div.col-md-9
-            div#nav-profile-dropdown.btn-group.navbar-right(style="margin-top:20px;margin-bottom:10px;margin-right:20px;")
+        div.row#page-header
+          div#page-title.col-md-3
+            h1 Study Hall
+          div#login-area.col-md-9
+            div#nav-profile-dropdown.btn-group.navbar-right
               button(type="button").btn.navbar-btn
                 |Sign Up
               button(data-toggle="dropdown" type="button").btn.navbar-btn.dropdown-toggle
@@ -34,23 +34,14 @@ html(lang="en")
         div.row-fluid
           div.main.centered.col-md-3(ng-controller="FilterController" style="background-color:#ee9;")
             form(ng-submit="")
-              div.row-fluid.btn-group-vertical(data-toggle="buttons-checkbox" ng-show="showToggles")
-                button.btn.btn-default(ng-repeat="offense in offenses | orderBy:'index'" ng-model="offense.selected" value="{{offense.name}}" type="checkbox" checkbox-toggle="") 
-                  div.keyCircle(style="background-color:{{offense.color}}")
-                  {{offense.name}} 
-              div.row-fluid
-                br
-              div.row-fluid.btn-group(data-toggle="buttons-checkbox")
-                button.btn.btn-default(ng-model="showPoints" type="checkbox" checkbox-toggle="") Points
-                button.btn.btn-default(ng-model="showHeat" type="checkbox" checkbox-toggle="") Heat
-              div.row-fluid
-                br
-                | Crimes Mapped: {{crimesCount}}
-          div.main.centered.col-md-9(ng-controller="MapController" style="background-color:#e9e;")
+              div.btn-group
+                button.btn.btn-default(type="radio" radio-toggle="") Left
+                button.btn.btn-default(type="radio" radio-toggle="") Middle
+                button.btn.btn-default(type="radio" radio-toggle="") Right
+          div#map-container.col-md-9(ng-controller="MapController")
             div#spinner(ng-show="showSpinner" style="display: none;")
               img(src="/studyhall/resources/img/spinner-small.gif")
             div#map
-            |Map
         
     script(type="text/javascript" src="/studyhall/resources/vendor/jquery/jquery-1.10.2.min.js")
     script(type="text/javascript" src="/studyhall/resources/vendor/bootstrap/js/bootstrap.min.js")
